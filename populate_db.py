@@ -64,7 +64,7 @@ def add_tag(name):
 # Start execution here!
 if __name__ == '__main__':
     print "Starting Rango population script..."
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'main.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'bookmarks.settings')
     django.setup()
-    from bookmarks.models import Link, Tag
+    from main.models import Link, Tag
 populate()
