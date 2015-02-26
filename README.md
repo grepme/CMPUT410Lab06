@@ -1,7 +1,7 @@
 # CMPUT410Lab06
 
 ```python
-  python manage.oy runserver
+  python manage.py runserver
 ```
 
 Access: http://localhost:8000/bookmarks
