@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.shortcuts import redirect
+from django.db import IntegrityError
+from django.contrib import messages
 
 from main.models import Link
 from main.models import Tag
@@ -54,9 +56,12 @@ def add_link(request):
         title = request.POST.get("title", "")
 
         # TODO: Add the link to the tags
-
-        link = Link(title=title, url=url)
-        link.save()
+        try:
+            link = Link(title=title, url=url)
+            link.save()
+        except IntegrityError:
+            messages.add_message(request, messages.ERROR, 'Error: That URL or title already exists.')
+            return redirect(index)
         for tag_new in tags.split(" "):
             try:
                 t1 = Tag.objects.get(name=tag_new)

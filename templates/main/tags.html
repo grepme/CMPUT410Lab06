@@ -15,36 +15,24 @@
         <div id="wrapper">
             <header>
                 <h1>Bookmarks</h1>
-                {% if messages %}
-                <div style="float: right; margin: -20px 0 0 -20px; color: red;" class="messages">
-                    {% for message in messages %}
-                    <span{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</span>
-                    {% endfor %}
-                </div>
-                {% endif %}
             </header>
             <div id="main">
                 <div id="sidebar">
                     <ul>
-                        <li class="active" id="home">
+                        <li class="" id="home">
                             <a href="/bookmarks">My Links</a>
                             {% if tag_name %}
                                 {{  tag_name }}
                             {% endif %}
                         </li>
                         <li><a href="javascript:;" id="addLink">Add a link</a></li>
-                        <li><a href="/bookmarks/tags">Tags</a></li>
+                        <li class="active"><a href="/bookmarks/tags">Tags</a></li>
                     </ul>
                 </div>
                 <div id="content">
-                    {% for link in links %}
+                    {% for tag in tags %}
                     <div class="link">
-                        <h4><a href="{{ link.url }}">{{ link.title }}</a></h4>
-                        <p class="tags">
-                            {% for tag in link.tags.all %}
-                                <a href="/bookmarks/tags/{{ tag.name }}">{{ tag.name }}</a>
-                            {% endfor %}
-                        </p>
+                        <h4><a href="/bookmarks/tags/{{ tag.name }}">{{ tag.name }}</a></h4>
                     </div>
                     {% endfor %}
                 </div>
